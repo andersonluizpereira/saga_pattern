@@ -2,11 +2,12 @@ package com.pereira.inventory.application.core.usecase;
 
 import com.pereira.inventory.application.core.domain.Sale;
 import com.pereira.inventory.application.core.domain.enums.SaleEvent;
+import com.pereira.inventory.application.ports.in.DebitInventoryInputPort;
 import com.pereira.inventory.application.ports.in.FindInventoryByProductIdInputPort;
 import com.pereira.inventory.application.ports.out.SendUpdatedInventoryOutPutPort;
 import com.pereira.inventory.application.ports.out.UpdateInventoryOutPutPort;
 
-public class DebitInventoryUseCase {
+public class DebitInventoryUseCase implements DebitInventoryInputPort {
     private final FindInventoryByProductIdInputPort findInventoryByProductIdInputPort;
     private final UpdateInventoryOutPutPort updateInventoryOutPutPort;
     private final SendUpdatedInventoryOutPutPort sendUpdatedInventoryOutPutPort;
@@ -17,6 +18,7 @@ public class DebitInventoryUseCase {
         this.sendUpdatedInventoryOutPutPort = sendUpdatedInventoryOutPutPort;
     }
 
+    @Override
     public void debit(Sale sale) {
         var inventory = findInventoryByProductIdInputPort.find(sale.getProductId());
         if (inventory.getQuantity() < sale.getQuantity()) {
