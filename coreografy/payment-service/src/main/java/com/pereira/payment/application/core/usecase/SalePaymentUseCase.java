@@ -4,11 +4,12 @@ import com.pereira.payment.application.core.domain.Payment;
 import com.pereira.payment.application.core.domain.Sale;
 import com.pereira.payment.application.core.domain.enums.SaleEvent;
 import com.pereira.payment.application.ports.in.FindUserByIdInputPort;
+import com.pereira.payment.application.ports.in.SalePaymentInputPort;
 import com.pereira.payment.application.ports.out.SavePaymentOutputPort;
 import com.pereira.payment.application.ports.out.SendValidatedPaymentOutputPort;
 import com.pereira.payment.application.ports.out.UpdateUserOutputPort;
 
-public class SalePaymentUseCase {
+public class SalePaymentUseCase implements SalePaymentInputPort {
     private final FindUserByIdInputPort findUserByIdInputPort;
     private final UpdateUserOutputPort updateUserOutputPort;
 
@@ -23,6 +24,7 @@ public class SalePaymentUseCase {
         this.sendValidatedPaymentOutputPort = sendValidatedPaymentOutputPort;
     }
 
+    @Override
     public void payment(Sale sale){
         var user = findUserByIdInputPort.find(sale.getUserId());
         if(user.getBalance().compareTo(sale.getValue()) < 0){
