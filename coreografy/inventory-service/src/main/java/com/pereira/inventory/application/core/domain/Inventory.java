@@ -2,18 +2,16 @@ package com.pereira.inventory.application.core.domain;
 
 public class Inventory {
 
+    private Integer id;
+    private Integer productId;
+    private Integer quantity;
     public Inventory() {
     }
-
     public Inventory(Integer id, Integer productId, Integer quantity) {
         this.id = id;
         this.productId = productId;
         this.quantity = quantity;
     }
-
-    private Integer id;
-    private Integer productId;
-    private Integer quantity;
 
     public Integer getId() {
         return id;
@@ -42,4 +40,9 @@ public class Inventory {
     public void debit(Integer quantity) {
         this.quantity -= quantity;
     }
+
+    public void credit(Integer quantity) {
+        this.quantity += quantity;
+    }
+
 }

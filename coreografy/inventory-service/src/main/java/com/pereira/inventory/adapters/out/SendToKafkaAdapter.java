@@ -3,13 +3,13 @@ package com.pereira.inventory.adapters.out;
 import com.pereira.inventory.adapters.out.message.SaleMessage;
 import com.pereira.inventory.application.core.domain.Sale;
 import com.pereira.inventory.application.core.domain.enums.SaleEvent;
-import com.pereira.inventory.application.ports.out.SendUpdatedInventoryOutPutPort;
+import com.pereira.inventory.application.ports.out.SendToKafkaOutPutPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SendUpdatedInventoryAdapter implements SendUpdatedInventoryOutPutPort {
+public class SendToKafkaAdapter implements SendToKafkaOutPutPort {
 
     @Autowired
     private KafkaTemplate<String, SaleMessage> kafkaTemplate;
