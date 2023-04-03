@@ -12,8 +12,10 @@ public class Sale {
     private BigDecimal value;
     private SaleStatus status;
     private Integer quantity;
+
     public Sale() {
     }
+
     public Sale(Integer id, Integer productId, Integer userId, BigDecimal value, SaleStatus status, Integer quantity) {
         this.id = id;
         this.productId = productId;
