@@ -21,7 +21,7 @@ public class KafkaSaleProducerConfig {
     @Bean
     public ProducerFactory<String, SaleMessage> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
-        configProps.put(BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
+        configProps.put(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configProps.put(GROUP_ID_CONFIG, "sale");
         configProps.put(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(VALUE_SERIALIZER_CLASS_CONFIG, CustomSerializer.class);

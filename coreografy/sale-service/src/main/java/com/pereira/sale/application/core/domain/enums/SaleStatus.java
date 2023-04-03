@@ -12,14 +12,15 @@ public enum SaleStatus {
         this.statusId = statusId;
     }
 
-    public Integer getStatusId() {
-        return statusId;
-    }
     public static SaleStatus toEnum(Integer id) {
         if (id == null) return null;
         return Arrays.stream(SaleStatus.values())
                 .filter(status -> status.getStatusId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Invalid status id: " + id));
+    }
+
+    public Integer getStatusId() {
+        return statusId;
     }
 }

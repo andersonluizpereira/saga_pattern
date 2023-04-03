@@ -6,9 +6,14 @@ import java.math.BigDecimal;
 
 public class Sale {
 
+    private Integer id;
+    private Integer productId;
+    private Integer userId;
+    private BigDecimal value;
+    private SaleStatus status;
+    private Integer quantity;
     public Sale() {
     }
-
     public Sale(Integer id, Integer productId, Integer userId, BigDecimal value, SaleStatus status, Integer quantity) {
         this.id = id;
         this.productId = productId;
@@ -17,12 +22,6 @@ public class Sale {
         this.status = status;
         this.quantity = quantity;
     }
-    private Integer id;
-    private Integer productId;
-    private Integer userId;
-    private BigDecimal value;
-    private SaleStatus status;
-    private Integer quantity;
 
     public Integer getId() {
         return id;
