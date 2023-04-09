@@ -7,8 +7,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FindSaleByIdConfig {
+
     @Bean
-    public FindSaleByIdUseCase findSaleByIdUseCase(FindSaleByIdAdapter findSaleByIdAdapter) {
+    public FindSaleByIdUseCase findSaleByIdUseCase(
+            FindSaleByIdAdapter findSaleByIdAdapter
+    ) {
         return new FindSaleByIdUseCase(findSaleByIdAdapter);
     }
+
 }

@@ -14,9 +14,7 @@ public class FinalizeSaleConfig {
             FindSaleByIdUseCase findSaleByIdUseCase,
             SaveSaleAdapter saveSaleAdapter
     ) {
-        return new FinalizeSaleUseCase(
-                findSaleByIdUseCase,
-                saveSaleAdapter
-        );
+        return new FinalizeSaleUseCase(findSaleByIdUseCase, saveSaleAdapter);
     }
+
 }

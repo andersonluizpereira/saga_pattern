@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CreateSaleConfig {
+
     @Bean
     public CreateSaleUseCase createSaleUseCase(
             SaveSaleAdapter saveSaleAdapter,
@@ -15,4 +16,5 @@ public class CreateSaleConfig {
     ) {
         return new CreateSaleUseCase(saveSaleAdapter, sendCreatedSaleAdapter);
     }
+
 }

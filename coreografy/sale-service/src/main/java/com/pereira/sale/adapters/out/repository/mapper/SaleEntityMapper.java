@@ -9,6 +9,7 @@ import org.mapstruct.Named;
 
 @Mapper(componentModel = "spring")
 public interface SaleEntityMapper {
+
     @Mapping(source = "status", target = "statusId", qualifiedByName = "setStatusId")
     SaleEntity toSaleEntity(Sale sale);
 
@@ -21,8 +22,8 @@ public interface SaleEntityMapper {
     Sale toSale(SaleEntity saleEntity);
 
     @Named("setStatus")
-    default SaleStatus setStatus(Integer statusId) {
-        return SaleStatus.toEnum(statusId);
+    default SaleStatus setStatus(Integer saleStatusId) {
+        return SaleStatus.toEnum(saleStatusId);
     }
 
 }

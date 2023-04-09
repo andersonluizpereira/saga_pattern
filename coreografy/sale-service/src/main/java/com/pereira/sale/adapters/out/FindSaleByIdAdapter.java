@@ -23,4 +23,5 @@ public class FindSaleByIdAdapter implements FindSaleByIdOutputPort {
         var saleEntity = saleRepository.findById(id);
         return saleEntity.map(saleEntityMapper::toSale);
     }
+
 }

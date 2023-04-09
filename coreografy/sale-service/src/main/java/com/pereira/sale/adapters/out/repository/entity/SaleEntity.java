@@ -15,12 +15,19 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity(name = "sales")
 public class SaleEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private Integer productId;
+
     private Integer userId;
+
     private BigDecimal value;
-    private Integer status;
+
+    private Integer statusId;
+
     private Integer quantity;
+
 }

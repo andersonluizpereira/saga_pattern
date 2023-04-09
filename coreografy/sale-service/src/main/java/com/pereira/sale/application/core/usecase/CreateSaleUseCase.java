@@ -4,23 +4,28 @@ import com.pereira.sale.application.core.domain.Sale;
 import com.pereira.sale.application.core.domain.enums.SaleEvent;
 import com.pereira.sale.application.core.domain.enums.SaleStatus;
 import com.pereira.sale.application.ports.in.CreateSaleInputPort;
-import com.pereira.sale.application.ports.out.SaveSaleOutPutPort;
-import com.pereira.sale.application.ports.out.SendCreatedSaleOutPutPort;
+import com.pereira.sale.application.ports.out.SaveSaleOutputPort;
+import com.pereira.sale.application.ports.out.SendCreatedSaleOutputPort;
 
 public class CreateSaleUseCase implements CreateSaleInputPort {
 
-    private final SaveSaleOutPutPort saveSaleOutPutPort;
-    private final SendCreatedSaleOutPutPort sendCreatedSaleOutPutPort;
+    private final SaveSaleOutputPort saveSaleOutputPort;
 
-    public CreateSaleUseCase(SaveSaleOutPutPort saveSaleOutPutPort, SendCreatedSaleOutPutPort sendCreatedSaleOutPutPort) {
-        this.saveSaleOutPutPort = saveSaleOutPutPort;
-        this.sendCreatedSaleOutPutPort = sendCreatedSaleOutPutPort;
+    private final SendCreatedSaleOutputPort sendCreatedSaleOutputPort;
+
+    public CreateSaleUseCase(
+            SaveSaleOutputPort saveSaleOutputPort,
+            SendCreatedSaleOutputPort sendCreatedSaleOutputPort
+    ) {
+        this.saveSaleOutputPort = saveSaleOutputPort;
+        this.sendCreatedSaleOutputPort = sendCreatedSaleOutputPort;
     }
 
     @Override
     public void create(Sale sale) {
         sale.setStatus(SaleStatus.PENDING);
-        var saleResponse = saveSaleOutPutPort.save(sale);
-        sendCreatedSaleOutPutPort.send(saleResponse, SaleEvent.CREATED_SALE);
+        var saleResponse = saveSaleOutputPort.save(sale);
+        sendCreatedSaleOutputPort.send(saleResponse, SaleEvent.CREATED_SALE);
     }
+
 }

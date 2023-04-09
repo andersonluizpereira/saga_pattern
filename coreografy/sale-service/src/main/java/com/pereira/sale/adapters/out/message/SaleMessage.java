@@ -12,6 +12,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SaleMessage {
+
     private Sale sale;
     private SaleEvent event;
+
 }

@@ -6,9 +6,9 @@ import com.pereira.sale.application.ports.in.CreateSaleInputPort;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.http.HttpStatus.CREATED;
 
 @Slf4j
 @RestController
@@ -22,10 +22,11 @@ public class SaleController {
     private SaleRequestMapper saleRequestMapper;
 
     @PostMapping
-    @ResponseStatus(CREATED)
-    public void CreateSale(@Valid @RequestBody SaleRequest saleRequest) {
-        log.info("CreateSale");
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createSale(@Valid @RequestBody SaleRequest saleRequest) {
+        log.info("Criando a venda...");
         createSaleInputPort.create(saleRequestMapper.toSale(saleRequest));
-        log.info("Sale created");
+        log.info("Venda criada com sucesso.");
     }
+
 }

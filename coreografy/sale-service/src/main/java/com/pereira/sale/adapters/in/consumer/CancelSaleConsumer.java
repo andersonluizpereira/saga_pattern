@@ -11,15 +11,17 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class CancelSaleConsumer {
+
     @Autowired
     private CancelSaleInputPort cancelSaleInputPort;
 
     @KafkaListener(topics = "tp-saga-sale", groupId = "sale-cancel")
     public void receive(SaleMessage saleMessage) {
-        if (SaleEvent.ROLLBACK_INVENTORY.equals(saleMessage.getEvent())) {
-            log.info("Canceling sale: {}", saleMessage.getSale());
+        if(SaleEvent.ROLLBACK_INVENTORY.equals(saleMessage.getEvent())) {
+            log.info("Cancelando a venda...");
             cancelSaleInputPort.cancel(saleMessage.getSale());
-            log.info("Sale canceled succedfully");
+            log.info("Venda cancelada com sucesso");
         }
     }
+
 }

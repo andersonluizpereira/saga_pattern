@@ -4,23 +4,27 @@ import com.pereira.sale.application.core.domain.Sale;
 import com.pereira.sale.application.core.domain.enums.SaleStatus;
 import com.pereira.sale.application.ports.in.FinalizeSaleInputPort;
 import com.pereira.sale.application.ports.in.FindSaleByIdInputPort;
-import com.pereira.sale.application.ports.out.SaveSaleOutPutPort;
+import com.pereira.sale.application.ports.out.SaveSaleOutputPort;
 
 public class FinalizeSaleUseCase implements FinalizeSaleInputPort {
 
     private final FindSaleByIdInputPort findSaleByIdInputPort;
-    private final SaveSaleOutPutPort saveSaleOutPutPort;
 
+    private final SaveSaleOutputPort saveSaleOutputPort;
 
-    public FinalizeSaleUseCase(FindSaleByIdInputPort findSaleByIdInputPort, SaveSaleOutPutPort saveSaleOutPutPort) {
+    public FinalizeSaleUseCase(
+            FindSaleByIdInputPort findSaleByIdInputPort,
+            SaveSaleOutputPort saveSaleOutputPort
+    ) {
         this.findSaleByIdInputPort = findSaleByIdInputPort;
-        this.saveSaleOutPutPort = saveSaleOutPutPort;
+        this.saveSaleOutputPort = saveSaleOutputPort;
     }
 
     @Override
     public void finalize(Sale sale) {
         var saleResponse = findSaleByIdInputPort.find(sale.getId());
         saleResponse.setStatus(SaleStatus.FINALIZED);
-        saveSaleOutPutPort.save(saleResponse);
+        saveSaleOutputPort.save(saleResponse);
     }
+
 }
