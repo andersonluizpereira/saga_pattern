@@ -140,5 +140,12 @@ curl --request POST \
 Veja as tabelas de sale, payment, inventory e user
 e veja como fica os topicos pelo offsetexplorer
 
+#Vantagens de se utilizar saga pattern coreografado - Projetos menores e menos complexos
+1-) É a maneiira mais simples de se implementar o padrao saga
+2-) Não possui um ponto de falha, as responsabilidades são distribuidas entre os microserviços
+3-) Não precisa de uma logica de coordenacao centralizada, qual evento que deve ser disparado, qual evento que deve ser ouvido, etc
 
+#Desvantagens de se utilizar saga pattern coreografado
+1-) Risco de dependencia ciclica entre os microserviços participantes da saga
+2-) Quanto mais microserviços participam da saga, mais complexa ela fica a validaçao por onde passam os serviços
 
