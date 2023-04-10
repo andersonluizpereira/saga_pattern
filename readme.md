@@ -69,3 +69,76 @@ public void createOrder(Order order) {
     paymentService.makePayment(order);
     shippingService.shipOrder(order);
 }
+
+---------------------
+#Como testar o projeto coreografia
+
+cd coreografy
+
+#Veja se o seu docker está rodando
+docker ps
+
+#Caso der erro para conectar no DBeaver local
+https://stackoverflow.com/questions/61749304/connection-between-dbeaver-mysql
+
+#Caso não esteja, rode o comando abaixo
+docker-compose up -d
+
+#Acesse o banco de dados
+docker exec -it id_docker bash
+
+#Acesse o banco de dados
+mysql -u root -p
+
+#Cria as seguintes bases
+create database saga_sale;
+create database saga_payment;
+create database saga_inventory;
+
+#Depois veja as bases criadas
+show databases;
+
+#Agora vamos criar nosso topico no kafka
+docker exec -it id_docker bash
+
+#Acesse o kafka
+kafka-topics --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic saga
+
+#Veja se o topico foi criado
+kafka-topics --list --zookeeper zookeeper:2181
+
+#Ou abra o projeto no offsetexplorer e veja se o topico foi criado
+
+#Como testar
+preencher a tabela de user, inventory  no banco de dados
+
+rode o curl abaixo 
+```curl --request POST \
+  --url http://localhost:8081/api/v1/sales \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"productId":1,
+	"userId":1,
+	"value":10,
+	"quantity":1
+}'
+````
+Veja as tabelas de sale, payment, inventory e user
+rode o curl abaixo 
+
+````
+curl --request POST \
+  --url http://localhost:8081/api/v1/sales \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"productId":1,
+	"userId":1,
+	"value":35,
+	"quantity":3
+}'
+````
+Veja as tabelas de sale, payment, inventory e user
+e veja como fica os topicos pelo offsetexplorer
+
+
+
