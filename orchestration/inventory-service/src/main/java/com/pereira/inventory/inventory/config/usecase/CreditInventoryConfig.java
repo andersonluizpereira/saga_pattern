@@ -13,10 +13,9 @@ public class CreditInventoryConfig {
     @Bean
     public CreditInventoryUseCase creditInventoryUseCase(
             FindInventoryByProductIdUseCase findInventoryByProductIdUseCase,
-            UpdateInventoryAdapter updateInventoryAdapter,
-            SendToKafkaAdapter sendToKafkaAdapter
+            UpdateInventoryAdapter updateInventoryAdapter
     ) {
-        return new CreditInventoryUseCase(findInventoryByProductIdUseCase, updateInventoryAdapter, sendToKafkaAdapter);
+        return new CreditInventoryUseCase(findInventoryByProductIdUseCase, updateInventoryAdapter);
     }
 
 }

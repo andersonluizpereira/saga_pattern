@@ -1,11 +1,8 @@
 package com.pereira.inventory.inventory.application.core.domain.enums;
 
 public enum SaleEvent {
-
-    CREATED_SALE,
-    UPDATED_INVENTORY,
-    VALIDATED_PAYMENT,
-    ROLLBACK_INVENTORY,
-    FAILED_PAYMENT
-
+    PREPARE_INVENTORY,
+    INVENTORY_PREPARED,
+    EXECUTE_ROLLBACK,
+    INVENTORY_ERROR,
 }

@@ -17,7 +17,7 @@ public class SendToKafkaAdapter implements SendToKafkaOutputPort {
     @Override
     public void send(Sale sale, SaleEvent event) {
         var saleMessage = new SaleMessage(sale, event);
-        kafkaTemplate.send("tp-saga-sale", saleMessage);
+        kafkaTemplate.send("tp-saga-orchestrator", saleMessage);
     }
 
 }
