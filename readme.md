@@ -149,3 +149,12 @@ e veja como fica os topicos pelo offsetexplorer
 1-) Risco de dependencia ciclica entre os microserviços participantes da saga
 2-) Quanto mais microserviços participam da saga, mais complexa ela fica a validaçao por onde passam os serviços
 
+#Saga orquestrado
+Saga execution cordinator (SEC) - é um microserviço responsavel por orquestrar a saga, ele é o responsavel por dizer qual evento deve ser disparado, qual evento deve ser ouvido, etc
+
+Ele vai receber requisição do microservico 1, deu certo ele vai chamar o microservico 2, deu certo ele vai chamar o microservico 3, etc
+
+No caso de falha, ele vai chamar o microservico 3 para fazer o rollback, depois chama o microservico 2 para fazer o rollback, etc
+
+Ele tira do microservico o conhecimento dos eventos que devem ser disparados, ouvidos, etc
+
