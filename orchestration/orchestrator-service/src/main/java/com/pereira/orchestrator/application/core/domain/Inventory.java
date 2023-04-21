@@ -2,6 +2,10 @@ package com.pereira.orchestrator.application.core.domain;
 
 public class Inventory {
 
+    private Integer id;
+    private Integer productId;
+    private Integer quantity;
+
     public Inventory() {
 
     }
@@ -11,12 +15,6 @@ public class Inventory {
         this.productId = productId;
         this.quantity = quantity;
     }
-
-    private Integer id;
-
-    private Integer productId;
-
-    private Integer quantity;
 
     public Integer getId() {
         return id;
