@@ -6,13 +6,6 @@ import java.math.BigDecimal;
 
 public class Sale {
 
-    private Integer id;
-    private Integer productId;
-    private Integer userId;
-    private BigDecimal value;
-    private SaleStatus status;
-    private Integer quantity;
-
     public Sale() {
 
     }
@@ -25,6 +18,18 @@ public class Sale {
         this.status = status;
         this.quantity = quantity;
     }
+
+    private Integer id;
+
+    private Integer productId;
+
+    private Integer userId;
+
+    private BigDecimal value;
+
+    private SaleStatus status;
+
+    private Integer quantity;
 
     public Integer getId() {
         return id;
@@ -73,6 +78,4 @@ public class Sale {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
 }
-

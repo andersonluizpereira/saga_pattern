@@ -22,10 +22,12 @@ public class ReceiveSaleToProcessConsumer {
                 .filter(w -> w.isCalledByTheEvent(saleMessage.getEvent()))
                 .findFirst()
                 .orElse(null);
-        if (workflow != null) {
+
+        if(workflow != null) {
             workflow.execute(saleMessage.getSale());
         } else {
-            log.error("Nenhum workflow encontrado para o evento: " + saleMessage.getEvent());
+            log.error("Evento não encontrado.");
         }
     }
+
 }

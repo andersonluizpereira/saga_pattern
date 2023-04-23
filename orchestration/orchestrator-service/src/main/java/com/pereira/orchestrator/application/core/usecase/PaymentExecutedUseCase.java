@@ -11,19 +11,23 @@ public class PaymentExecutedUseCase implements WorkflowInputPort {
 
     private final SendSaleToTopicOutputPort sendSaleToTopicOutputPort;
 
-    public PaymentExecutedUseCase(SendSaleToTopicOutputPort sendSaleToTopicOutputPort) {
+    public PaymentExecutedUseCase(
+            SendSaleToTopicOutputPort sendSaleToTopicOutputPort
+    ) {
         this.sendSaleToTopicOutputPort = sendSaleToTopicOutputPort;
     }
 
+
     @Override
     public void execute(Sale sale) {
-        log.info("Incio da finalização da venda");
-        sendSaleToTopicOutputPort.Send(sale, SaleEvent.FINALIZED_SALE, "tp-saga-sale");
-        log.info("Finalização da venda enviada para fila");
+        log.info("Finalizando a venda.");
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.FINALIZE_SALE, "tp-saga-sale");
+        log.info("Finalização da venda postada na fila.");
     }
 
     @Override
     public boolean isCalledByTheEvent(SaleEvent saleEvent) {
         return SaleEvent.PAYMENT_EXECUTED.equals(saleEvent);
     }
+
 }

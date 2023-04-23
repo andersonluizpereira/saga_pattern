@@ -11,19 +11,22 @@ public class InventoryPreparedUseCase implements WorkflowInputPort {
 
     private final SendSaleToTopicOutputPort sendSaleToTopicOutputPort;
 
-    public InventoryPreparedUseCase(SendSaleToTopicOutputPort sendSaleToTopicOutputPort) {
+    public InventoryPreparedUseCase(
+            SendSaleToTopicOutputPort sendSaleToTopicOutputPort
+    ) {
         this.sendSaleToTopicOutputPort = sendSaleToTopicOutputPort;
     }
 
     @Override
     public void execute(Sale sale) {
-        log.info("Incio do pagamento da venda");
-        sendSaleToTopicOutputPort.Send(sale, SaleEvent.EXECUTE_PAYMENT, "tp-saga-payment");
-        log.info("Pagamento enviado para fila");
+        log.info("Início do pagamento da venda.");
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.EXECUTE_PAYMENT, "tp-saga-payment");
+        log.info("Pagamento enviado para fila.");
     }
 
     @Override
     public boolean isCalledByTheEvent(SaleEvent saleEvent) {
         return SaleEvent.INVENTORY_PREPARED.equals(saleEvent);
     }
+
 }

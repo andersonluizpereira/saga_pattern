@@ -8,7 +8,7 @@
 		<version>3.0.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.pereira</groupId>
+	<groupId>com.arantes</groupId>
 	<artifactId>sale-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sale-service</name>

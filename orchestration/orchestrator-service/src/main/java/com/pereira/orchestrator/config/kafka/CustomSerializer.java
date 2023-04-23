@@ -1,7 +1,7 @@
 package com.pereira.orchestrator.config.kafka;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pereira.orchestrator.adapters.out.message.SaleMessage;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Serializer;
 
@@ -12,7 +12,7 @@ public class CustomSerializer implements Serializer<SaleMessage> {
     @Override
     public byte[] serialize(String s, SaleMessage saleMessage) {
         try {
-            if (saleMessage == null) {
+            if (saleMessage == null){
                 return null;
             }
             return objectMapper.writeValueAsBytes(saleMessage);

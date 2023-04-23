@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SaleMessage {
+
     private Sale sale;
+
     private SaleEvent event;
+
 }

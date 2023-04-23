@@ -4,11 +4,6 @@ import java.math.BigDecimal;
 
 public class Payment {
 
-    private Integer id;
-    private Integer userId;
-    private Integer saleId;
-    private BigDecimal value;
-
     public Payment() {
 
     }
@@ -19,6 +14,14 @@ public class Payment {
         this.saleId = saleId;
         this.value = value;
     }
+
+    private Integer id;
+
+    private Integer userId;
+
+    private Integer saleId;
+
+    private BigDecimal value;
 
     public Integer getId() {
         return id;
@@ -52,4 +55,3 @@ public class Payment {
         this.value = value;
     }
 }
-

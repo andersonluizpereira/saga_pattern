@@ -11,20 +11,23 @@ public class PaymentFailureUseCase implements WorkflowInputPort {
 
     private final SendSaleToTopicOutputPort sendSaleToTopicOutputPort;
 
-    public PaymentFailureUseCase(SendSaleToTopicOutputPort sendSaleToTopicOutputPort) {
+    public PaymentFailureUseCase(
+            SendSaleToTopicOutputPort sendSaleToTopicOutputPort
+    ) {
         this.sendSaleToTopicOutputPort = sendSaleToTopicOutputPort;
     }
 
     @Override
     public void execute(Sale sale) {
-        log.info("Erro no pagamento, incio do rollback da venda");
-        sendSaleToTopicOutputPort.Send(sale, SaleEvent.EXECUTE_ROLLBACK, "tp-saga-inventory");
-        sendSaleToTopicOutputPort.Send(sale, SaleEvent.CANCEL_SALE, "tp-saga-sale");
-        log.info("Rollback de estoque e venda enviado para fila");
+        log.info("Erro no pagamento.");
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.EXECUTE_ROLLBACK, "tp-saga-inventory");
+        sendSaleToTopicOutputPort.send(sale, SaleEvent.CANCEL_SALE, "tp-saga-sale");
+        log.info("Rollback do estoque e cancelamento da venda postados na fila.");
     }
 
     @Override
     public boolean isCalledByTheEvent(SaleEvent saleEvent) {
         return SaleEvent.PAYMENT_FAILED.equals(saleEvent);
     }
+
 }

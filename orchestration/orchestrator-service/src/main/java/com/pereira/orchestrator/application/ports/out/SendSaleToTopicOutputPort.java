@@ -4,5 +4,7 @@ import com.pereira.orchestrator.application.core.domain.Sale;
 import com.pereira.orchestrator.application.core.domain.enums.SaleEvent;
 
 public interface SendSaleToTopicOutputPort {
-    void Send(Sale sale, SaleEvent saleEvent, String topic);
+
+    void send(Sale sale, SaleEvent saleEvent, String topic);
+
 }

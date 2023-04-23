@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SendSaleToTopicAdapter implements SendSaleToTopicOutputPort {
 
-
     @Autowired
     private KafkaTemplate<String, SaleMessage> kafkaTemplate;
 
     @Override
-    public void Send(Sale sale, SaleEvent saleEvent, String topic) {
+    public void send(Sale sale, SaleEvent saleEvent, String topic) {
         var saleMessage = new SaleMessage(sale, saleEvent);
         kafkaTemplate.send(topic, saleMessage);
     }
+
 }

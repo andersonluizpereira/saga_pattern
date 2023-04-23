@@ -7,8 +7,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class InventoryPreparedConfig {
+
     @Bean
-    public InventoryPreparedUseCase inventoryPreparedUseCase(SendSaleToTopicAdapter sendSaleToTopicAdapter) {
+    public InventoryPreparedUseCase inventoryPreparedUseCase(
+            SendSaleToTopicAdapter sendSaleToTopicAdapter
+    ) {
         return new InventoryPreparedUseCase(sendSaleToTopicAdapter);
     }
+
 }
